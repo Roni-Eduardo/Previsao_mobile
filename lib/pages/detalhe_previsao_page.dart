@@ -1,23 +1,19 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:previsao_mobile/model/previsao.dart';
 
-class DetalhePrevisaoPage extends StatefulWidget{
+class DetalhePrevisaoPage extends StatefulWidget {
   final Previsao previsao;
 
-  const DetalhePrevisaoPage({Key? key, required this.previsao }) : super(key: key);
-
+  const DetalhePrevisaoPage({Key? key, required this.previsao}) : super(key: key);
 
   @override
   DetalhePrevisaoPageState createState() => DetalhePrevisaoPageState();
-
 }
 
-class DetalhePrevisaoPageState extends State<DetalhePrevisaoPage>{
-
+class DetalhePrevisaoPageState extends State<DetalhePrevisaoPage> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
@@ -45,23 +41,35 @@ class DetalhePrevisaoPageState extends State<DetalhePrevisaoPage>{
               Valor(valor: '${widget.previsao.descricao}'),
             ],
           ),
+          Row(
+            children: [
+              const Campo(descricao: 'Latitude:'),
+              Valor(valor: '${widget.previsao.latitude ?? 'Sem valor'}'),
+            ],
+          ),
+          Row(
+            children: [
+              const Campo(descricao: 'Longitude:'),
+              Valor(valor: '${widget.previsao.longitude ?? 'Sem valor'}'),
+            ],
+          ),
         ],
       ),
     );
   }
-
 }
 
-class Campo extends StatelessWidget{
+class Campo extends StatelessWidget {
   final String descricao;
 
-  const Campo({Key? key, required this.descricao}): super(key: key);
+  const Campo({Key? key, required this.descricao}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Expanded(
       flex: 1,
-      child: Text(descricao,
+      child: Text(
+        descricao,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
@@ -70,13 +78,13 @@ class Campo extends StatelessWidget{
   }
 }
 
-class Valor extends StatelessWidget{
+class Valor extends StatelessWidget {
   final String valor;
 
-  const Valor({Key? key, required this.valor}): super(key: key);
+  const Valor({Key? key, required this.valor}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Expanded(
       flex: 4,
       child: Text(valor == '' ? 'Sem valor' : valor),
